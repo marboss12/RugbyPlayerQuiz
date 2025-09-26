@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RugbyPlayerQuiz.MainPage"
+             Title="Rugby Quiz"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <Style x:Key="DefaultButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="DarkBlue"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+
+        <Style x:Key="CorrectButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Green"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+
+        <Style x:Key="IncorrectButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Red"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20" Spacing="20">
+
+        <!-- Счетчик вопросов -->
+        <Label Text="{Binding QuestionCounter}" 
+               TextColor="Black"
+               FontSize="18"
+               HorizontalOptions="Center"/>
+
+        <!-- Счет -->
+        <Label Text="{Binding ScoreText}" 
+               TextColor="Black"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"/>
+
+        <!-- Изображение игрока -->
+        <!-- Изображение игрока -->
+        <Frame BackgroundColor="LightGray"
+       Padding="10"
+       CornerRadius="15"
+       HorizontalOptions="Center"
+       WidthRequest="150"
+       HeightRequest="200">
+            <Image Source="{Binding CurrentPlayer.ImageUrl}"
+           Aspect="AspectFill"
+           HorizontalOptions="Fill"
+           VerticalOptions="Fill"/>
+        </Frame>
+
+        <!-- Варианты ответов -->
+        <StackLayout x:Name="OptionsContainer" Spacing="10" 
+             BindableLayout.ItemsSource="{Binding Options}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Button Text="{Binding Name}" 
+                    Clicked="OnAnswerSelected"
+                    Style="{StaticResource DefaultButtonStyle}"/>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

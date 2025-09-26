@@ -1,0 +1,20 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+	<!-- Белый круглый фон -->
+	<circle cx="256" cy="256" r="256" fill="white"/>
+
+	<!-- Красный регбийный мяч -->
+	<ellipse cx="256" cy="256" rx="192" ry="128" fill="#D52B1E"/>
+
+	<!-- Изогнутые швы мяча (более плавные) -->
+	<path d="M256 128 Q300 160 300 200 Q300 240 256 272 Q212 240 212 200 Q212 160 256 128"
+          fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+	<path d="M256 384 Q300 352 300 312 Q300 272 256 240 Q212 272 212 312 Q212 352 256 384"
+          fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+	<!-- Дополнительные детали для улучшения качества -->
+	<ellipse cx="256" cy="256" rx="192" ry="128" fill="none" stroke="#A02020" stroke-width="4"/>
+
+	<!-- Тень для объема -->
+	<ellipse cx="250" cy="262" rx="188" ry="124" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="2"/>
+</svg>
