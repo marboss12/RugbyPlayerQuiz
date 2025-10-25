@@ -3,11 +3,10 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:RugbyPlayerQuiz"
        x:Class="RugbyPlayerQuiz.AppShell"
-       Title="RugbyPlayerQuiz"
-       FlyoutBehavior="Disabled">
+       FlyoutBehavior="Disabled"
+       Shell.NavBarIsVisible="False">
+    <!-- ДОБАВЬТЕ ЭТУ СТРОКУ -->
 
-    <!-- УБЕРИТЕ LoadingPage из Shell -->
-    <!-- Оставьте только основные страницы -->
     <ShellContent 
         Title="Главная" 
         ContentTemplate="{DataTemplate local:MenuPage}" 
@@ -17,10 +16,12 @@
         Title="Игра"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
     <ShellContent
         Title="Смешанная лига"
         ContentTemplate="{DataTemplate local:MixedLeaguePage}"
         Route="MixedLeaguePage" />
+
     <ShellContent
         Title="Результаты"
         ContentTemplate="{DataTemplate local:ResultsPage}"

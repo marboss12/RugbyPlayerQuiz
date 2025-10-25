@@ -9,7 +9,7 @@ public partial class App : Application
         InitializeComponent();
 
         // Сразу показываем LoadingPage без задержки
-        MainPage = new LoadingPage();
+        MainPage = new AppShell();
     }
 
     public static QuizResult LastQuizResult { get; set; } = new QuizResult
