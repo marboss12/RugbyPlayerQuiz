@@ -2,86 +2,106 @@
 <ContentPage x:Class="RugbyPlayerQuiz.MenuPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="Главное меню">
+             Title="Главное меню"
+             NavigationPage.HasNavigationBar="True">
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="30" Padding="20">
-            <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
-                </Grid.ColumnDefinitions>
+    <AbsoluteLayout>
+        
+        <!-- Основной контент в ScrollView -->
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout Spacing="25" Padding="20">
+                <!-- Первая строка логотипов -->
+                <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="lokomotiv.jpg" Grid.Column="0" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
+                    <Image Source="slava.png" Grid.Column="1" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
+                    <Image Source="krasnyyar.png" Grid.Column="2" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
+                    <Image Source="vva.jpg" Grid.Column="3" HeightRequest="80" WidthRequest="80" Aspect="AspectFit"/>
+                </Grid>
 
-                <Image Source="lokomotiv.jpg" Grid.Column="0" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
-                <Image Source="slava.png" Grid.Column="1" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
-                <Image Source="krasnyyar.png" Grid.Column="2" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
-                <Image Source="vva.jpg" Grid.Column="3" HeightRequest="80" WidthRequest="80" Aspect="AspectFit"/>
-            </Grid>
+                <!-- Заголовок -->
+                <Label Text="Угадай Игрока!" 
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="Green" />
 
-            <!-- Заголовок -->
-            <Label Text="Угадай Игрока!" 
-                   FontSize="32"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="Green" />
+                <!-- Статус игрока -->
+                <Frame BackgroundColor="LightBlue" 
+                       CornerRadius="10"
+                       Padding="15"
+                       HorizontalOptions="Center">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Ваш статус:" 
+                               FontSize="16"
+                               TextColor="DarkBlue"
+                               FontAttributes="Bold" />
+                        <Label Text="{Binding CurrentStatus}" 
+                               FontSize="20"
+                               TextColor="DarkBlue"
+                               FontAttributes="Bold" />
+                        <Label Text="{Binding LastGameDate}" 
+                               FontSize="14"
+                               TextColor="DarkBlue" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <!-- Статус игрока -->
-            <Frame BackgroundColor="LightBlue" 
-                   CornerRadius="10"
-                   Padding="15"
-                   HorizontalOptions="Center">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Ваш статус:" 
-                           FontSize="16"
-                           TextColor="DarkBlue"
-                           FontAttributes="Bold" />
-                    <Label Text="{Binding CurrentStatus}" 
-                           FontSize="20"
-                           TextColor="DarkBlue"
-                           FontAttributes="Bold" />
-                    <Label Text="{Binding LastGameDate}" 
-                           FontSize="14"
-                           TextColor="DarkBlue" />
-                </VerticalStackLayout>
-            </Frame>
+                <!-- Кнопки выбора лиги -->
+                <Label Text="Выберите уровень сложности:" 
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="DarkGreen" />
 
-            <!-- Кнопки -->
-            <Button Text="Начать игру" 
-                    Clicked="OnStartGameClicked"
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    HeightRequest="60"
-                    FontSize="18" />
+                <Button Text="Чемпионат России" 
+                        Clicked="OnRussianChampionshipClicked"
+                        BackgroundColor="DarkBlue"
+                        TextColor="White"
+                        HeightRequest="55"
+                        FontSize="16" />
 
-            <Button Text="Выход" 
-                    Clicked="OnExitClicked"
-                    BackgroundColor="Gray"
-                    TextColor="White"
-                    HeightRequest="60"
-                    FontSize="18" />
-            <Grid HorizontalOptions="Center" VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
-                </Grid.ColumnDefinitions>
+                <Button Text="Чемпионат России + Высшая лига" 
+                        Clicked="OnMixedLeagueClicked"
+                        BackgroundColor="Purple"
+                        TextColor="White"
+                        HeightRequest="55"
+                        FontSize="16" />
 
-                <Image Source="enisey.png" Grid.Column="0" HeightRequest="80" WidthRequest="80" Aspect="AspectFit"/>
-                <Image Source="metallurg.jpg" Grid.Column="1" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
-                <Image Source="strela.jpg" Grid.Column="2" HeightRequest="80" WidthRequest="80" Aspect="AspectFit"/>
-                <Image Source="dinamo.jpg" Grid.Column="3" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
-            </Grid>
+                <Button Text="Выход" 
+                        Clicked="OnExitClicked"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        HeightRequest="50"
+                        FontSize="16" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+                <!-- Вторая строка логотипов -->
+                <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="240"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="enisey.png" Grid.Column="0" HeightRequest="80" WidthRequest="80" Aspect="AspectFit"/>
+                    <Image Source="metallurg.jpg" Grid.Column="1" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
+                    <Image Source="strela.jpg" Grid.Column="2" HeightRequest="80" WidthRequest="80" Aspect="AspectFit"/>
+                    <Image Source="dinamo.jpg" Grid.Column="3" HeightRequest="60" WidthRequest="60" Aspect="AspectFit"/>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </AbsoluteLayout>
 
 </ContentPage>

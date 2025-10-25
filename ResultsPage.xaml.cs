@@ -5,7 +5,7 @@ namespace RugbyPlayerQuiz;
 public partial class ResultsPage : ContentPage
 {
     private QuizResult _result;
-
+    private const string TELEGRAM_CHANNEL_URL = "https://t.me/RugbyQuiz";
     public string ResultText { get; set; }
     public string ScoreText { get; set; }
     public string PlayerStatus { get; set; }
@@ -39,6 +39,18 @@ public partial class ResultsPage : ContentPage
 
         ScoreText = $"{_result.Score} из {_result.TotalQuestions} правильных ответов";
         PlayerStatus = _result.PlayerStatus;
+    }
+    private async void OnTelegramChannelClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            var uri = new Uri(TELEGRAM_CHANNEL_URL);
+            await Launcher.Default.OpenAsync(uri);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ошибка", "Не удалось открыть Telegram. Убедитесь, что приложение установлено.", "OK");
+        }
     }
 
     private async void OnPlayAgainClicked(object sender, EventArgs e)

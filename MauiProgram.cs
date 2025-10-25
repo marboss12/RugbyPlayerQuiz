@@ -20,8 +20,10 @@ public static class MauiProgram
         // Вместо этого используем простую конфигурацию
 
         builder.Services.AddSingleton<IPlayerService, PlayerService>();
+        builder.Services.AddSingleton<MixedLeaguePlayerService>();
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<MenuPage>();
+        builder.Services.AddTransient<MixedLeaguePage>();
         builder.Services.AddTransient<ResultsPage>();
 
         return builder.Build();

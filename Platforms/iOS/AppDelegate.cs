@@ -7,4 +7,5 @@ namespace RugbyPlayerQuiz
     {
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }
+
 }

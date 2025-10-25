@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-windows10.0.19041.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RugbyPlayerQuiz</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -14,33 +14,55 @@
 		<!-- Настройки для платформ -->
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		
-		<!-- Настройки IPA сборки -->
-		<BuildIpa>true</BuildIpa>
-		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
-		<ArchiveOnBuild>true</ArchiveOnBuild>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<DefaultLanguage>ru</DefaultLanguage>
 	</PropertyGroup>
 
-	<!-- Настройки для Release сборки iOS -->
-	<PropertyGroup Condition="'$(Configuration)'=='Release' And '$(TargetFramework)' == 'net8.0-ios'">
-		<Optimize>true</Optimize>
-		<CodesignKey>Apple Development: your_email@gmail.com</CodesignKey>
-		<CodesignProvision>RugbyQuiz Development</CodesignProvision>
+	<!-- Конфигурация для Windows -->
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-windows10.0.19041.0'">
+		<OutputType>WinExe</OutputType>
+		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<!-- Настройки для Android -->
-	<PropertyGroup Condition="'$(Configuration)'=='Release' And '$(TargetFramework)' == 'net8.0-android'">
+	<!-- Конфигурация для Android -->
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
 	</ItemGroup>
+
+	<!-- УДАЛИТЕ ЭТОТ БЛОК - MAUI сам подтянет нужную версию -->
+	<!--
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows10.0.19041.0'">
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240802000" />
+	</ItemGroup>
+	-->
 
 	<ItemGroup>
 		<MauiImage Include="Resources\Images\*" />
 		<MauiFont Include="Resources\Fonts\*" />
+		<AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" />
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#1B5E20" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="LoadingPage.xaml.cs">
+	    <DependentUpon>LoadingPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MixedLeaguePage.xaml.cs">
+	    <DependentUpon>MixedLeaguePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="LoadingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MixedLeaguePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RugbyPlayerQuiz.MixedLeaguePage"
+             Title="Чемпионат России + Высшая лига"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <!-- Стили остаются без изменений -->
+        <Style x:Key="DefaultButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Purple"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+
+        <Style x:Key="CorrectButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Green"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+
+        <Style x:Key="IncorrectButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Red"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="CornerRadius" Value="25"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout>
+        <!-- Основной контент (занимает всю область кроме нижней части) -->
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,0.8"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Padding="20">
+            <StackLayout Spacing="20">
+
+                <!-- Счетчик вопросов -->
+                <Label Text="{Binding QuestionCounter}" 
+                       TextColor="Black"
+                       FontSize="18"
+                       HorizontalOptions="Center"/>
+
+                <!-- Счет -->
+                <Label Text="{Binding ScoreText}" 
+                       TextColor="Black"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+
+                <!-- Изображение игрока -->
+                <Frame BackgroundColor="LightGray"
+                       Padding="10"
+                       CornerRadius="15"
+                       HorizontalOptions="Center"
+                       WidthRequest="150"
+                       HeightRequest="200">
+                    <Image Source="{Binding CurrentPlayer.ImageUrl}"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill"/>
+                </Frame>
+
+                <!-- Варианты ответов -->
+                <StackLayout x:Name="OptionsContainer" 
+                             Spacing="10" 
+                             BindableLayout.ItemsSource="{Binding Options}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Button Text="{Binding Name}" 
+                                    Clicked="OnAnswerSelected"
+                                    Style="{StaticResource DefaultButtonStyle}"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+
+
+        <!-- Декоративная картинка -->
+        <Image x:Name="RotatingMoscowImage"
+               Source="rugbymoscow.jpg"
+               WidthRequest="100"
+               HeightRequest="100"
+               Aspect="AspectFill"
+               Rotation="0"
+               AnchorX="0.5"
+               AnchorY="0.5"
+               AbsoluteLayout.LayoutBounds="0.5, 0.8, 120, 80"
+               AbsoluteLayout.LayoutFlags="PositionProportional" />
+    </AbsoluteLayout>
+
+</ContentPage>

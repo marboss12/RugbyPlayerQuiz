@@ -7,7 +7,9 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
-        MainPage = new AppShell();
+
+        // Сразу показываем LoadingPage без задержки
+        MainPage = new LoadingPage();
     }
 
     public static QuizResult LastQuizResult { get; set; } = new QuizResult
@@ -17,5 +19,4 @@ public partial class App : Application
         Score = 0,
         TotalQuestions = 10
     };
-
 }

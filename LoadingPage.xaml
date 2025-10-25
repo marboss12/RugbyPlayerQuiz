@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RugbyPlayerQuiz.LoadingPage"
+             BackgroundColor="White">
+
+    <AbsoluteLayout>
+        <Image x:Name="LoadingImage"
+               Source="rugbymoscow.jpg"
+               WidthRequest="150"
+               HeightRequest="150"
+               Aspect="AspectFill"
+               Rotation="0"
+               AnchorX="0.5"
+               AnchorY="0.5"
+               AbsoluteLayout.LayoutBounds="0.5, 0.4, 150, 150"
+               AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+        <Label Text="Rugby Quiz"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="DarkBlue"
+               AbsoluteLayout.LayoutBounds="0.5, 0.6, AutoSize, AutoSize"
+               AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+        <Label Text="Загрузка..."
+               FontSize="16"
+               TextColor="Gray"
+               AbsoluteLayout.LayoutBounds="0.5, 0.65, AutoSize, AutoSize"
+               AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+        <ActivityIndicator x:Name="LoadingIndicator"
+                          IsRunning="True"
+                          Color="Blue"
+                          AbsoluteLayout.LayoutBounds="0.5, 0.7, AutoSize, AutoSize"
+                          AbsoluteLayout.LayoutFlags="PositionProportional" />
+    </AbsoluteLayout>
+</ContentPage>

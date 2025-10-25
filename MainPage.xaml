@@ -31,46 +31,66 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Padding="20" Spacing="20">
+    <AbsoluteLayout>
+        <!-- Основной контент -->
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     Padding="20" 
+                     Spacing="20">
 
-        <!-- Счетчик вопросов -->
-        <Label Text="{Binding QuestionCounter}" 
-               TextColor="Black"
-               FontSize="18"
-               HorizontalOptions="Center"/>
+            <!-- Счетчик вопросов -->
+            <Label Text="{Binding QuestionCounter}" 
+                   TextColor="Black"
+                   FontSize="18"
+                   HorizontalOptions="Center"/>
 
-        <!-- Счет -->
-        <Label Text="{Binding ScoreText}" 
-               TextColor="Black"
-               FontSize="24"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"/>
+            <!-- Счет -->
+            <Label Text="{Binding ScoreText}" 
+                   TextColor="Black"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
 
-        <!-- Изображение игрока -->
-        <!-- Изображение игрока -->
-        <Frame BackgroundColor="LightGray"
-       Padding="10"
-       CornerRadius="15"
-       HorizontalOptions="Center"
-       WidthRequest="150"
-       HeightRequest="200">
-            <Image Source="{Binding CurrentPlayer.ImageUrl}"
-           Aspect="AspectFill"
-           HorizontalOptions="Fill"
-           VerticalOptions="Fill"/>
-        </Frame>
+            <!-- Изображение игрока -->
+            <Frame BackgroundColor="LightGray"
+                   Padding="10"
+                   CornerRadius="15"
+                   HorizontalOptions="Center"
+                   WidthRequest="150"
+                   HeightRequest="200">
+                <Image Source="{Binding CurrentPlayer.ImageUrl}"
+                       Aspect="AspectFill"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Fill"/>
+            </Frame>
 
-        <!-- Варианты ответов -->
-        <StackLayout x:Name="OptionsContainer" Spacing="10" 
-             BindableLayout.ItemsSource="{Binding Options}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Button Text="{Binding Name}" 
-                    Clicked="OnAnswerSelected"
-                    Style="{StaticResource DefaultButtonStyle}"/>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
+            <!-- Варианты ответов -->
+            <StackLayout x:Name="OptionsContainer" 
+                         Spacing="10" 
+                         BindableLayout.ItemsSource="{Binding Options}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Button Text="{Binding Name}" 
+                                Clicked="OnAnswerSelected"
+                                Style="{StaticResource DefaultButtonStyle}"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
         </StackLayout>
 
-    </StackLayout>
+
+        <!-- Можно добавить вторую картинку в другом месте -->
+        <Image x:Name="RotatingMoscowImage"
+       Source="rugbymoscow.jpg"
+       WidthRequest="100"
+       HeightRequest="100"
+       Aspect="AspectFill"
+       Rotation="0"
+       AnchorX="0.5"
+       AnchorY="0.5"
+       AbsoluteLayout.LayoutBounds="0.05, 0.05, 120, 80"
+       AbsoluteLayout.LayoutFlags="PositionProportional" />
+    </AbsoluteLayout>
+
 </ContentPage>

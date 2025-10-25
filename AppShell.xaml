@@ -6,9 +6,23 @@
        Title="RugbyPlayerQuiz"
        FlyoutBehavior="Disabled">
 
+    <!-- УБЕРИТЕ LoadingPage из Shell -->
+    <!-- Оставьте только основные страницы -->
     <ShellContent 
         Title="Главная" 
         ContentTemplate="{DataTemplate local:MenuPage}" 
-        Route="MenuPage" 
-        IsVisible="True" />
+        Route="MenuPage" />
+
+    <ShellContent
+        Title="Игра"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    <ShellContent
+        Title="Смешанная лига"
+        ContentTemplate="{DataTemplate local:MixedLeaguePage}"
+        Route="MixedLeaguePage" />
+    <ShellContent
+        Title="Результаты"
+        ContentTemplate="{DataTemplate local:ResultsPage}"
+        Route="ResultsPage" />
 </Shell>
